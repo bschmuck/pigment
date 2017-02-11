@@ -18,6 +18,7 @@
 		F07675761E4E9B6C00536CB3 /* PigmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675751E4E9B6C00536CB3 /* PigmentTests.swift */; };
 		F07675811E4E9B6C00536CB3 /* PigmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675801E4E9B6C00536CB3 /* PigmentUITests.swift */; };
 		F076758F1E4EA98200536CB3 /* PIGColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076758E1E4EA98200536CB3 /* PIGColorManager.swift */; };
+		F07675931E4EBAAD00536CB3 /* ISColorWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = F07675921E4EBAAD00536CB3 /* ISColorWheel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,9 @@
 		F07675801E4E9B6C00536CB3 /* PigmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigmentUITests.swift; sourceTree = "<group>"; };
 		F07675821E4E9B6C00536CB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F076758E1E4EA98200536CB3 /* PIGColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGColorManager.swift; sourceTree = "<group>"; };
+		F07675901E4EBAAD00536CB3 /* Pigment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pigment-Bridging-Header.h"; sourceTree = "<group>"; };
+		F07675911E4EBAAD00536CB3 /* ISColorWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISColorWheel.h; sourceTree = "<group>"; };
+		F07675921E4EBAAD00536CB3 /* ISColorWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISColorWheel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +149,10 @@
 				F07675641E4E9B6C00536CB3 /* Main.storyboard */,
 				F07675671E4E9B6C00536CB3 /* Assets.xcassets */,
 				F07675691E4E9B6C00536CB3 /* LaunchScreen.storyboard */,
+				F07675911E4EBAAD00536CB3 /* ISColorWheel.h */,
+				F07675921E4EBAAD00536CB3 /* ISColorWheel.m */,
 				F076756C1E4E9B6C00536CB3 /* Info.plist */,
+				F07675901E4EBAAD00536CB3 /* Pigment-Bridging-Header.h */,
 			);
 			path = Pigment;
 			sourceTree = "<group>";
@@ -246,6 +253,7 @@
 					F076755C1E4E9B6C00536CB3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = W2K89DDM88;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					F07675701E4E9B6C00536CB3 = {
@@ -453,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F07675631E4E9B6C00536CB3 /* PIGMainViewController.swift in Sources */,
+				F07675931E4EBAAD00536CB3 /* ISColorWheel.m in Sources */,
 				F07675611E4E9B6C00536CB3 /* AppDelegate.swift in Sources */,
 				F076758F1E4EA98200536CB3 /* PIGColorManager.swift in Sources */,
 			);
@@ -607,11 +616,14 @@
 			baseConfigurationReference = 38CBD33E35F5FC8D7C7FE8DA /* Pods-Pigment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = W2K89DDM88;
 				INFOPLIST_FILE = Pigment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bschmuck.Pigment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pigment/Pigment-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -621,11 +633,13 @@
 			baseConfigurationReference = 28BD47F7DDFEEA5A01846F1E /* Pods-Pigment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = W2K89DDM88;
 				INFOPLIST_FILE = Pigment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bschmuck.Pigment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pigment/Pigment-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -7,7 +7,6 @@ target 'Pigment' do
 
   # Pods for Pigment
   pod 'EDColor'
-
   target 'PigmentTests' do
     inherit! :search_paths
     # Pods for testing

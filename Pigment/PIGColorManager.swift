@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EDColor
 
 
 enum PIGMode {
@@ -22,6 +23,14 @@ class PIGColorManager: NSObject {
         switch mode {
             
         case .complimentary:
+            
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            
             return UIColor.red
         case .analagous:
             return UIColor.red
