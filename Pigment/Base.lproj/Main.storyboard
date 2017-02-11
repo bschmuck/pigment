@@ -35,7 +35,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PIGMainViewController" customModule="Pigment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="PIGMainViewController" customModule="Pigment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -132,16 +132,17 @@
                         <outlet property="color4View" destination="KMf-JP-fTE" id="b42-OI-3sr"/>
                         <outlet property="colorView" destination="aWb-7q-quY" id="nxH-zd-wvW"/>
                         <outlet property="menuButton" destination="P4b-QE-XVk" id="htT-hH-Bi8"/>
+                        <outlet property="modeLabel" destination="BDP-gw-iLO" id="qYu-j9-nox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
-        <!--View Controller-->
+        <!--Sidebar View Controller-->
         <scene sceneID="ul2-gI-QMo">
             <objects>
-                <viewController id="nwg-cq-ZBY" sceneMemberID="viewController">
+                <viewController id="nwg-cq-ZBY" customClass="PIGSidebarViewController" customModule="Pigment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="prq-lb-2wR"/>
                         <viewControllerLayoutGuide type="bottom" id="1IE-AO-p2z"/>
@@ -149,12 +150,53 @@
                     <view key="view" contentMode="scaleToFill" id="l5r-4k-aRn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfT-ou-ERb">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModeCell" id="Dyd-Z6-Ybp" customClass="PIGTableViewCell" customModule="Pigment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dyd-Z6-Ybp" id="Ly5-tH-wPy">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nx9-21-MCJ">
+                                                    <rect key="frame" x="8" y="10" width="47" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nx9-21-MCJ" firstAttribute="centerY" secondItem="Ly5-tH-wPy" secondAttribute="centerY" id="E2W-LE-eza"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="nx9-21-MCJ" secondAttribute="leading" id="ngP-3j-KIN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="modeLabel" destination="nx9-21-MCJ" id="Mo1-Ge-yxk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LfT-ou-ERb" firstAttribute="centerX" secondItem="l5r-4k-aRn" secondAttribute="centerX" id="Hnk-v2-67M"/>
+                            <constraint firstItem="LfT-ou-ERb" firstAttribute="centerY" secondItem="l5r-4k-aRn" secondAttribute="centerY" id="Je5-Dj-XzM"/>
+                            <constraint firstItem="1IE-AO-p2z" firstAttribute="top" secondItem="LfT-ou-ERb" secondAttribute="bottom" constant="20" id="Mzk-BO-tdU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LfT-ou-ERb" secondAttribute="trailing" id="hEg-fV-qG3"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="LfT-ou-ERb" secondAttribute="leading" id="tzn-Bn-tUt"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="modeTableViewController" destination="LfT-ou-ERb" id="qMA-G3-m1R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJ0-BZ-Jag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27" y="717"/>
+            <point key="canvasLocation" x="26.399999999999999" y="716.49175412293857"/>
         </scene>
     </scenes>
     <resources>
