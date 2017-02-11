@@ -48,7 +48,7 @@ class PIGColorManager: NSObject {
             saturation -= 0.1
             lightness -= 0.14
             
-            return UIColor.red
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
             
         }
@@ -71,7 +71,16 @@ class PIGColorManager: NSObject {
         case .triade:
             return UIColor.red
         case  .shade:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            saturation -= 0.09
+            lightness -= 0.27
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
     }
     
@@ -92,7 +101,16 @@ class PIGColorManager: NSObject {
         case .triade:
             return UIColor.red
         case .shade:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            saturation -= 0.09
+            lightness -= 0.40
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
     }
     
@@ -113,7 +131,17 @@ class PIGColorManager: NSObject {
         case .triade:
             return UIColor.red
         case .shade:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            saturation -= 0.10
+            lightness -= 0.06
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
             
         }
     }
