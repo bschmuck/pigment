@@ -76,7 +76,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         switch PIGSelection.shared.selectedMode {
             
         case .analagous:
-            labelVal = "Analagous"
+            labelVal = "Analogous"
         case .shade:
             labelVal = "Shade"
         case .compound:
@@ -84,7 +84,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         case .complimentary:
             labelVal = "Complimentary"
         case .triade:
-            labelVal = "Triade"
+            labelVal = "Triad"
             
         }
         

@@ -10,7 +10,7 @@ import UIKit
 
 class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let modes = ["Complementary", "Triade", "Analagous", "Shade", "Compound"]
+    let modes = ["Complementary", "Triad", "Analogous", "Shade", "Compound"]
     let selection = PIGSelection.shared
     var bgDelta = 0
     var threshhold = 105
@@ -60,9 +60,9 @@ class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if(selectedItem == "Complementary") {
             PIGSelection.shared.selectedMode = .complimentary
-        } else if(selectedItem == "Triade") {
+        } else if(selectedItem == "Triad") {
             PIGSelection.shared.selectedMode = .triade
-        } else if(selectedItem == "Analagous") {
+        } else if(selectedItem == "Analogous") {
             PIGSelection.shared.selectedMode = .analagous
         } else if(selectedItem == "Shade") {
             PIGSelection.shared.selectedMode = .shade
