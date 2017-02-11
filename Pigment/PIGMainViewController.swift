@@ -16,6 +16,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var camFrame: UIView!
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var cameraIcon: UIButton!
     @IBOutlet weak var colorView: UIView!
     let captureSession = AVCaptureSession()
@@ -43,6 +44,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var menuButton: UIButton!
     var showingInfo = false
     var showingCamera = false
+    var textIsBlack = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +79,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         showInfo.addTarget(self, action: #selector(toggleInfo), for: .touchUpInside)
         cameraIcon.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareColor), for: .touchUpInside)
         
         modeLabel.text = labelVal
         
@@ -227,6 +230,11 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         avgBlue /= numVals
         avgAlpha /= numVals
         
+        PIGSelection.shared.red = Double(avgRed)
+        PIGSelection.shared.green = Double(avgGreen)
+        PIGSelection.shared.blue = Double(avgBlue)
+        PIGSelection.shared.alpha = Double(avgAlpha)
+        
         let colorVal  = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
         let color1 = PIGColorManager.getColor1(color: colorVal, mode: PIGSelection.shared.selectedMode)
         let color2 = PIGColorManager.getColor2(color: colorVal, mode: PIGSelection.shared.selectedMode)
@@ -246,6 +254,36 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color3Vals = PIGColorManager.getRGBA(color: color3)
         let color4Vals = PIGColorManager.getRGBA(color: color4)
         
+        let selection = PIGSelection.shared
+        var threshhold = 105
+        var bgDelta = (Int((selection.red * 0.299) + (selection.green * 0.587) + (selection.blue * 0.114)))
+        if 255 - bgDelta < threshhold  && !textIsBlack {
+            textIsBlack = true
+            self.mainColorLabel.textColor = UIColor.black
+            self.color1Label.textColor = UIColor.black
+            self.color2Label.textColor = UIColor.black
+            self.color3Label.textColor = UIColor.black
+            self.color4Label.textColor = UIColor.black
+            color1NameLabel.textColor = UIColor.black
+            color2NameLabel.textColor = UIColor.black
+            color3NameLabel.textColor = UIColor.black
+            color4NameLabel.textColor = UIColor.black
+            mainColorNameLabel.textColor = UIColor.black
+        } else if textIsBlack {
+            textIsBlack = false
+            self.mainColorLabel.textColor = UIColor.white
+            self.color1Label.textColor = UIColor.white
+            self.color2Label.textColor = UIColor.white
+            self.color3Label.textColor = UIColor.white
+            self.color4Label.textColor = UIColor.white
+            color1NameLabel.textColor = UIColor.white
+            color2NameLabel.textColor = UIColor.white
+            color3NameLabel.textColor = UIColor.white
+            color4NameLabel.textColor = UIColor.white
+            mainColorNameLabel.textColor = UIColor.white
+        }
+        
+        
         DispatchQueue.main.async {
             self.mainColorLabel.text = "r: \(255*avgRed), g: \(255*avgGreen), b: \(255*avgBlue), a: \(avgAlpha)"
             self.color1Label.text = "r: \(255*color1Vals.red), g: \(255*color1Vals.green), b: \(255*color1Vals.blue), a: \(color1Vals.alpha)"
@@ -258,6 +296,13 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.color3View.backgroundColor = color3
             self.color4View.backgroundColor = color4
         }
+    }
+    
+    func shareColor() {
+        let shareContent = "\(self.modeLabel.text!):\n\(self.mainColorLabel.text!)\n\(self.color1Label.text!)\n\(self.color2Label.text!)\n\(self.color3Label.text!)\n\(self.color4Label.text!)\n"
+        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString], applicationActivities: nil)
+        
+        present(activityViewController, animated: true, completion: {})
     }
 
     override func didReceiveMemoryWarning() {

@@ -11,13 +11,18 @@ import UIKit
 class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let modes = ["Complementary", "Triade", "Analagous", "Shade", "Compound"]
-    
+    let selection = PIGSelection.shared
+    var bgDelta = 0
+    var threshhold = 105
+
     @IBOutlet weak var modeTableViewController: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         modeTableViewController.delegate = self
         modeTableViewController.dataSource = self
         
+        titleLabel.textColor = (255 - bgDelta < threshhold) ? UIColor.black : UIColor.white
         // Do any additional setup after loading the view.
     }
     
@@ -25,6 +30,8 @@ class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableVi
         self.view.backgroundColor = PIGSelection.shared.currentColor
         modeTableViewController.backgroundColor = PIGSelection.shared.currentColor
         modeTableViewController.reloadData()
+        bgDelta = (Int((selection.red * 0.299) + (selection.green * 0.587) + (selection.blue * 0.114)))
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,8 +42,11 @@ class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ModeCell") as! PIGTableViewCell
         cell.modeLabel.text = modes[indexPath.row]
-        cell.modeLabel.textColor = UIColor.white
+        cell.modeLabel.textColor = (255 - bgDelta < threshhold) ? UIColor.black : UIColor.white
         cell.backgroundColor = PIGSelection.shared.currentColor
+        
+        
+        
         return cell
     }
     
