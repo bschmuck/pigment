@@ -49,6 +49,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     var textIsBlack = false
     
     var lightsMode = false
+    
+    var colors: [UIColor] = [UIColor.white, UIColor.white, UIColor.white, UIColor.white, UIColor.white]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -271,16 +273,23 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color3Vals = PIGColorManager.getRGBA(color: color3)
         let color4Vals = PIGColorManager.getRGBA(color: color4)
         
+        colors[0] = colorVal
+        colors[1] = color1
+        colors[2] = color2
+        colors[3] = color3
+        colors[4] = color4
+        
+        
         if(counter % 30) == 0 && lightsMode {
-            PIGHuesManager.setLightBulbs(color: colorVal, lightNum: 1)
-            PIGHuesManager.setLightBulbs(color: color1, lightNum: 2)
-            PIGHuesManager.setLightBulbs(color: color4, lightNum: 3)
+            PIGHuesManager.setLightBulbs(color: colors[Int(arc4random_uniform(5))], lightNum: 1)
+            PIGHuesManager.setLightBulbs(color: colors[Int(arc4random_uniform(5))], lightNum: 2)
+            PIGHuesManager.setLightBulbs(color: colors[Int(arc4random_uniform(5))], lightNum: 3)
 
         }
         
         let selection = PIGSelection.shared
-        var threshhold = 105
-        var bgDelta = (Int((selection.red * 0.299) + (selection.green * 0.587) + (selection.blue * 0.114)))
+        let threshhold = 105
+        let bgDelta = (Int((selection.red * 0.299) + (selection.green * 0.587) + (selection.blue * 0.114)))
         if 255 - bgDelta < threshhold  && !textIsBlack {
             textIsBlack = true
             self.mainColorLabel.textColor = UIColor.black
