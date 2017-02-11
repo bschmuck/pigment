@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bvA-Oh-osG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,28 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Reveal View Controller-->
+        <scene sceneID="2Dv-J9-u64">
+            <objects>
+                <viewController id="bvA-Oh-osG" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A8N-tr-1Ix"/>
+                        <viewControllerLayoutGuide type="bottom" id="YP9-vL-zbt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mjd-37-VlE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="NwD-Hs-y17"/>
+                        <segue destination="nwg-cq-ZBY" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="jA7-6h-Avc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRf-CY-gQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-828" y="29"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -40,7 +62,17 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="py1-OI-QoA">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="133.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4b-QE-XVk">
+                                        <rect key="frame" x="25" y="25" width="26" height="22"/>
+                                        <state key="normal" image="MenuIcon"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="P4b-QE-XVk" firstAttribute="top" secondItem="py1-OI-QoA" secondAttribute="top" constant="25" id="N3c-aa-jCN"/>
+                                    <constraint firstItem="P4b-QE-XVk" firstAttribute="leading" secondItem="py1-OI-QoA" secondAttribute="leading" constant="25" id="pFu-O6-d5x"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhX-8X-myX">
                                 <rect key="frame" x="0.0" y="133.5" width="375" height="133.5"/>
@@ -99,14 +131,34 @@
                         <outlet property="color3View" destination="M4x-Yx-4iQ" id="nAR-dU-ROe"/>
                         <outlet property="color4View" destination="KMf-JP-fTE" id="b42-OI-3sr"/>
                         <outlet property="colorView" destination="aWb-7q-quY" id="nxH-zd-wvW"/>
+                        <outlet property="menuButton" destination="P4b-QE-XVk" id="htT-hH-Bi8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="ul2-gI-QMo">
+            <objects>
+                <viewController id="nwg-cq-ZBY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="prq-lb-2wR"/>
+                        <viewControllerLayoutGuide type="bottom" id="1IE-AO-p2z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="l5r-4k-aRn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uJ0-BZ-Jag" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="27" y="717"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="MenuIcon" width="26" height="19"/>
         <image name="Triangle" width="55" height="67"/>
     </resources>
 </document>

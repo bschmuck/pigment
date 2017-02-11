@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SWRevealViewController
 
 class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate {
     
@@ -20,9 +21,15 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var color2View: UIView!
     @IBOutlet weak var color3View: UIView!
     @IBOutlet weak var color4View: UIView!
+    @IBOutlet weak var menuButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.revealViewController() != nil {
+            menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: {
             granted in
