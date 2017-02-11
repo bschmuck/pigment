@@ -233,6 +233,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color3 = PIGColorManager.getColor3(color: colorVal, mode: PIGSelection.shared.selectedMode)
         let color4 = PIGColorManager.getColor4(color: colorVal, mode: PIGSelection.shared.selectedMode)
         
+        PIGSelection.shared.currentColor = colorVal
+        
         color1NameLabel.text = colorNamer.name(for: color1)
         color2NameLabel.text = colorNamer.name(for: color2)
         color3NameLabel.text = colorNamer.name(for: color3)

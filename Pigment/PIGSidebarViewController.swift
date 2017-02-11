@@ -17,7 +17,14 @@ class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         modeTableViewController.delegate = self
         modeTableViewController.dataSource = self
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.view.backgroundColor = PIGSelection.shared.currentColor
+        modeTableViewController.backgroundColor = PIGSelection.shared.currentColor
+        modeTableViewController.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +35,8 @@ class PIGSidebarViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ModeCell") as! PIGTableViewCell
         cell.modeLabel.text = modes[indexPath.row]
+        cell.modeLabel.textColor = UIColor.white
+        cell.backgroundColor = PIGSelection.shared.currentColor
         return cell
     }
     

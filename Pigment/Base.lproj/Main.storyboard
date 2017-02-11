@@ -280,7 +280,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfT-ou-ERb">
-                                <rect key="frame" x="16" y="59" width="343" height="588"/>
+                                <rect key="frame" x="16" y="122" width="343" height="525"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModeCell" id="Dyd-Z6-Ybp" customClass="PIGTableViewCell" customModule="Pigment" customModuleProvider="target">
@@ -308,13 +308,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Rule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvv-Rd-nEu">
+                                <rect key="frame" x="26" y="81" width="116" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LfT-ou-ERb" firstAttribute="centerX" secondItem="l5r-4k-aRn" secondAttribute="centerX" id="Hnk-v2-67M"/>
-                            <constraint firstItem="LfT-ou-ERb" firstAttribute="centerY" secondItem="l5r-4k-aRn" secondAttribute="centerY" constant="19.5" id="Je5-Dj-XzM"/>
+                            <constraint firstItem="LfT-ou-ERb" firstAttribute="centerY" secondItem="l5r-4k-aRn" secondAttribute="centerY" constant="51" id="Je5-Dj-XzM"/>
                             <constraint firstItem="1IE-AO-p2z" firstAttribute="top" secondItem="LfT-ou-ERb" secondAttribute="bottom" constant="20" id="Mzk-BO-tdU"/>
+                            <constraint firstItem="LfT-ou-ERb" firstAttribute="top" secondItem="tvv-Rd-nEu" secondAttribute="bottom" constant="8" id="SM1-le-YuI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LfT-ou-ERb" secondAttribute="trailing" id="hEg-fV-qG3"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="tvv-Rd-nEu" secondAttribute="leading" constant="-10" id="nkC-MW-j9I"/>
                             <constraint firstAttribute="leadingMargin" secondItem="LfT-ou-ERb" secondAttribute="leading" id="tzn-Bn-tUt"/>
                         </constraints>
                     </view>

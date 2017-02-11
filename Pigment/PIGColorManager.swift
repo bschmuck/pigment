@@ -257,6 +257,10 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             
             color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            
+            
+            
+            
             return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
