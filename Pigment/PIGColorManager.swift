@@ -15,6 +15,7 @@ enum PIGMode {
     case triade
     case analagous
     case shade
+    case compound
 }
 
 class PIGColorManager: NSObject {
@@ -49,6 +50,19 @@ class PIGColorManager: NSObject {
             lightness -= 0.14
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+        case .compound:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue -= 0.21
+            saturation += 0.56
+            lightness += 0.71
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
             
             
         }
@@ -81,6 +95,19 @@ class PIGColorManager: NSObject {
             lightness -= 0.27
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
+        case .compound:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue += 0.122
+            saturation += 0.82
+            lightness -= 0.51
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
     }
     
@@ -111,6 +138,19 @@ class PIGColorManager: NSObject {
             lightness -= 0.40
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
+        case .compound:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue += 0.6194
+            saturation += 0.05
+            lightness += 0.12
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
     }
     
@@ -139,6 +179,19 @@ class PIGColorManager: NSObject {
             
             saturation -= 0.10
             lightness -= 0.06
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
+        case .compound:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue -= 0.6361
+            saturation += 0.35
+            lightness += 0.21
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
