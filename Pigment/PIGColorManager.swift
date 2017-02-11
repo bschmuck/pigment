@@ -14,6 +14,7 @@ enum PIGMode {
     case complimentary
     case triade
     case analagous
+    case shade
 }
 
 class PIGColorManager: NSObject {
@@ -39,6 +40,18 @@ class PIGColorManager: NSObject {
             return UIColor.red
         case .triade:
             return UIColor.red
+        case .shade:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            saturation -= 0.1
+            lightness -= 0.14
+            
+            return UIColor.red
+            
             
         }
     }
@@ -59,7 +72,8 @@ class PIGColorManager: NSObject {
             return UIColor.red
         case .triade:
             return UIColor.red
-            
+        case  .shade:
+            return UIColor.red
         }
     }
     
@@ -79,7 +93,8 @@ class PIGColorManager: NSObject {
             return UIColor.red
         case .triade:
             return UIColor.red
-            
+        case .shade:
+            return UIColor.red
         }
     }
     
@@ -98,6 +113,8 @@ class PIGColorManager: NSObject {
         case .analagous:
             return UIColor.red
         case .triade:
+            return UIColor.red
+        case .shade:
             return UIColor.red
             
         }
