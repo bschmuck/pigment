@@ -59,12 +59,196 @@ class PIGColorManager: NSObject {
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
         case .triade:
-            var red: CGFloat = 0.0
+            /*var red: CGFloat = 0.0
             var green: CGFloat = 0.0
-            var blue: CGFloat = 0.0
+            var blue: CGFloat = 0.0*/
             var alpha: CGFloat = 0.0
             
+            var red: CGFloat = 1.0
+            var green: CGFloat = 1.0
+            var blue: CGFloat = 1.0
             color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            
+            var rgb = [CGFloat]()
+            red*=233
+            green*=67
+            blue*=89
+            
+    
+            if red>green
+            {
+                if blue>green
+                {
+                    if blue>red
+                    {
+                        rgb[3]=240
+                        rgb[0]=blue
+                        rgb[1]=red
+                    }
+                
+                    else
+                    {
+                        rgb[3]=0;
+                        rgb[0]=red;
+                        rgb[1]=blue;
+                        rgb[4]=2.0;
+                        rgb[2]=green;
+                    }
+                
+                
+                }
+                else
+                {
+                    rgb[3]=0;
+                    rgb[0]=red;
+                    rgb[1]=green;
+                    rgb[2]=blue;
+                    rgb[4]=1;
+                }
+            }
+            else
+            {
+                if blue>red
+                {
+                    if blue>green
+                    {
+                        rgb[3]=240;
+                        rgb[0]=blue;
+                        rgb[1]=green;
+                        rgb[4]=2.0;
+                        rgb[2]=red;
+                    }
+                    else
+                    {
+                        rgb[3]=120;
+                        rgb[0]=green;
+                        rgb[1]=blue;
+                        rgb[4]=1;
+                        rgb[2]=red;
+                    
+                    }
+                
+                }
+                else
+                {
+                    rgb[3]=120;
+                    rgb[0]=green;
+                    rgb[1]=red;
+                    rgb[2]=blue;
+                    rgb[4]=2.0;
+                }
+            }
+        
+        
+        print (rgb[0] )
+        print (rgb[1] )
+        print (rgb[2] )
+
+        
+    
+        
+        
+    /*public double ratio(int a , int b)
+    {
+    return (double)a/(double)(a+b);
+    }
+    
+    public int[] getPosition(int[] rgb)
+    {
+    double ratio=redatio(rgb[2],rgb[1]);
+    
+    if(rgb[4]==-1)
+    {
+    
+    angle=redgb[3]+(int)(120*ratio);
+    rgb[1]+=(angle-rgb[3])*(255.0/60.0);
+    magnitude=((255-rgb[0])+(255-rgb[1])+(255-rgb[3]))/3;
+    }
+    else
+    {
+    angle=redgb[3]+120-(int)(120*ratio);
+    
+    magnitude=(int)(rgb[1]+(rgb[3]+120-angle)*(60.0/255.0));
+    }
+    System.out.println("***"+angle+"    "+magnitude);
+    int[] results={angle,magnitude};
+    return results;
+    
+    }
+    
+    public int[] getRGB(int angle,int magnitude)
+    {
+    int R=0;
+    int G=0;
+    int B=0;
+    System.out.println(angle);
+    magnitude+=20;
+    if(angle<120)
+    {
+    R=255;
+    if(angle>=60)
+    {
+    G=255-(120-angle)*255/60;
+    B=0;
+    G+=magnitude;
+    R-=magnitude;
+    }
+    else
+    {
+    B=255-(angle-0)*255/60;
+    G=0;
+    G+=magnitude;
+    R-=magnitude;
+    }
+    }
+    else if(angle<240&&angle>120)
+    {
+    G=255;
+    if(angle>=180)
+    {
+    R=255-(240-angle)*255/60;
+    B=0;
+    B+=magnitude;
+    G-=magnitude;
+    }
+    else
+    {
+    B=255-(angle-120)*255/60;
+    R=0;
+    R+=magnitude;
+    G-=magnitude;
+    }
+    
+    }
+    else if(angle<360&&angle>240)
+    {
+    B=255;
+    if(angle<=300)
+    {
+    G=255-(angle-240)*255/60;
+    R=0;
+    R+=magnitude;
+    B-=magnitude;
+    }
+    else
+    {
+    R=255-(360-angle)*255/60;
+    G=0;
+    G+=magnitude;
+    B-=magnitude;
+    }
+    
+    }
+    
+    int[] results={R,G,B};
+    return results;
+    */
+    
+                    
+        
+        
+            
+            
             return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
