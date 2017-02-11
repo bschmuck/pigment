@@ -15,6 +15,11 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     let captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
     var error: NSError?
+    
+    @IBOutlet weak var color1View: UIView!
+    @IBOutlet weak var color2View: UIView!
+    @IBOutlet weak var color3View: UIView!
+    @IBOutlet weak var color4View: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,8 +125,19 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         avgBlue /= numVals
         avgAlpha /= numVals
         
+        let colorVal  = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
+        let color1 = PIGColorManager.getComplementaryColor1(color: colorVal)
+        let color2 = PIGColorManager.getComplementaryColor1(color: colorVal)
+        let color3 = PIGColorManager.getComplementaryColor1(color: colorVal)
+        let color4 = PIGColorManager.getComplementaryColor1(color: colorVal)
+        
+        
         DispatchQueue.main.async {
-            self.colorView.backgroundColor = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
+            self.colorView.backgroundColor = colorVal
+            self.color1View.backgroundColor = color1
+            self.color2View.backgroundColor = color2
+            self.color3View.backgroundColor = color3
+            self.color4View.backgroundColor = color4
         }
     }
 

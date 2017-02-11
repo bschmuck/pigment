@@ -11,7 +11,19 @@ import UIKit
 class PIGColorManager: NSObject {
     
     //Returns a complementary color of the given color
-    func getComplementaryColor(UIColor: color) -> UIColor {
-        
+    class func getComplementaryColor1(color: UIColor) -> UIColor {
+        return UIColor.red
+    }
+    
+    class func getComplementaryColor2(color: UIColor) -> UIColor {
+        return UIColor.red
+    }
+    
+    class func getComplementaryColor3(color: UIColor) -> UIColor {
+        return UIColor.red
+    }
+    
+    class func getComplementaryColor4(color: UIColor) -> UIColor {
+        return UIColor.red
     }
 }

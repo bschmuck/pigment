@@ -29,16 +29,52 @@
                                     <constraint firstAttribute="height" constant="128" id="wLj-eY-Oj3"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="py1-OI-QoA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhX-8X-myX">
+                                <rect key="frame" x="0.0" y="135" width="375" height="134.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4x-Yx-4iQ">
+                                <rect key="frame" x="0.0" y="404" width="375" height="135"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWb-7q-quY">
+                                <rect key="frame" x="0.0" y="269.5" width="375" height="134.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="KMf-JP-fTE" firstAttribute="top" secondItem="M4x-Yx-4iQ" secondAttribute="bottom" id="4I2-Mq-qIG"/>
+                            <constraint firstItem="bhX-8X-myX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="4Yg-gQ-OjR"/>
+                            <constraint firstItem="aWb-7q-quY" firstAttribute="top" secondItem="bhX-8X-myX" secondAttribute="bottom" id="6Wj-rt-LLx"/>
+                            <constraint firstItem="M4x-Yx-4iQ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="6ka-sy-iO1"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KMf-JP-fTE" secondAttribute="bottom" id="734-Dz-8LY"/>
+                            <constraint firstItem="M4x-Yx-4iQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B7E-QQ-Pjy"/>
+                            <constraint firstItem="bhX-8X-myX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Cfg-fQ-oEx"/>
+                            <constraint firstItem="py1-OI-QoA" firstAttribute="height" secondItem="bhX-8X-myX" secondAttribute="height" id="DT0-o8-YVQ"/>
+                            <constraint firstItem="py1-OI-QoA" firstAttribute="height" secondItem="M4x-Yx-4iQ" secondAttribute="height" id="EBh-24-F9h"/>
+                            <constraint firstItem="py1-OI-QoA" firstAttribute="height" secondItem="aWb-7q-quY" secondAttribute="height" id="G7z-pA-ZPi"/>
+                            <constraint firstItem="py1-OI-QoA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="Odf-B7-Lqa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KMf-JP-fTE" secondAttribute="trailing" constant="-16" id="QGU-Fc-S1C"/>
+                            <constraint firstItem="aWb-7q-quY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="QRl-Um-91z"/>
+                            <constraint firstItem="M4x-Yx-4iQ" firstAttribute="top" secondItem="aWb-7q-quY" secondAttribute="bottom" id="Uc5-mO-gaP"/>
+                            <constraint firstItem="py1-OI-QoA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WHj-BU-MTV"/>
+                            <constraint firstItem="aWb-7q-quY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kMa-Mv-3MP"/>
+                            <constraint firstItem="bhX-8X-myX" firstAttribute="top" secondItem="py1-OI-QoA" secondAttribute="bottom" id="lys-cb-Ssk"/>
                             <constraint firstItem="KMf-JP-fTE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qpK-Tb-T5p"/>
+                            <constraint firstItem="py1-OI-QoA" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="uIO-gU-icU"/>
                             <constraint firstItem="KMf-JP-fTE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="ubF-45-OmE"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="color1View" destination="py1-OI-QoA" id="1HG-Fb-iuV"/>
+                        <outlet property="color2View" destination="bhX-8X-myX" id="gIi-kq-RJW"/>
+                        <outlet property="color3View" destination="aWb-7q-quY" id="rjE-l8-sjO"/>
+                        <outlet property="color4View" destination="M4x-Yx-4iQ" id="rfh-ZS-h1q"/>
                         <outlet property="colorView" destination="KMf-JP-fTE" id="zzi-0i-7q3"/>
                     </connections>
                 </viewController>
