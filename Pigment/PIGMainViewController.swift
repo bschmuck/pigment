@@ -16,10 +16,17 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var camFrame: UIView!
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     
+    @IBOutlet weak var cameraIcon: UIButton!
     @IBOutlet weak var colorView: UIView!
     let captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
     var error: NSError?
+    
+    @IBOutlet weak var color1Label: UILabel!
+    @IBOutlet weak var color2Label: UILabel!
+    @IBOutlet weak var mainColorLabel: UILabel!
+    @IBOutlet weak var color3Label: UILabel!
+    @IBOutlet weak var color4Label: UILabel!
     
     @IBOutlet weak var modeLabel: UILabel!
     @IBOutlet weak var color1View: UIView!
@@ -28,10 +35,13 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var color4View: UIView!
     @IBOutlet weak var menuButton: UIButton!
     var showingInfo = false
+    var showingCamera = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         var labelVal = ""
+        
+        color1Label.isHidden = true
         
         switch PIGSelection.shared.selectedMode {
             
@@ -49,6 +59,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         showInfo.addTarget(self, action: #selector(toggleInfo), for: .touchUpInside)
+        cameraIcon.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
         
         modeLabel.text = labelVal
         
@@ -106,13 +117,30 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var prevVals = Array<(red: Float?, green: Float?, blue: Float?, alpha: Float?)>()
     
-    func toggleInfo() {
-        if self.showingInfo {
-             self.videoPreviewLayer?.isHidden = true
-             self.showingInfo = false
+    func toggleCamera() {
+        if self.showingCamera {
+            self.videoPreviewLayer?.isHidden = true
+            self.showingCamera = false
         } else {
             self.videoPreviewLayer?.isHidden = false
+            self.showingCamera = true
+        }
+    }
+    
+    func toggleInfo() {
+        if self.showingInfo {
+             self.showingInfo = false
+             self.mainColorLabel.isHidden = true
+            self.color1Label.isHidden = true
+            self.color2Label.isHidden = true
+            self.color3Label.isHidden = true
+            self.color4Label.isHidden = true
+        } else {
             self.showingInfo = true
+            self.mainColorLabel.isHidden = false
+            self.color1Label.isHidden = false
+            self.color2Label.isHidden = false
+            self.color3Label.isHidden = false
         }
     }
     
@@ -178,7 +206,17 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color4 = PIGColorManager.getColor4(color: colorVal, mode: PIGSelection.shared.selectedMode)
         
         
+        let color1Vals = PIGColorManager.getRGBA(color: color1)
+        let color2Vals = PIGColorManager.getRGBA(color: color2)
+        let color3Vals = PIGColorManager.getRGBA(color: color3)
+        let color4Vals = PIGColorManager.getRGBA(color: color4)
+        
         DispatchQueue.main.async {
+            self.mainColorLabel.text = "r: \(avgRed), g: \(avgGreen), b: \(avgBlue), a: \(avgAlpha)"
+            self.color1Label.text = "r: \(color1Vals.red), g: \(color1Vals.green), b: \(color1Vals.blue), a: \(color1Vals.alpha)"
+            self.color2Label.text = "r: \(color2Vals.red), g: \(color2Vals.green), b: \(color2Vals.blue), a: \(color2Vals.alpha)"
+            self.color3Label.text = "r: \(color3Vals.red), g: \(color3Vals.green), b: \(color3Vals.blue), a: \(color3Vals.alpha)"
+            self.color4Label.text = "r: \(color4Vals.red), g: \(color4Vals.green), b: \(color4Vals.blue), a: \(color4Vals.alpha)"
             self.colorView.backgroundColor = colorVal
             self.color1View.backgroundColor = color1
             self.color2View.backgroundColor = color2
@@ -191,7 +229,5 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
