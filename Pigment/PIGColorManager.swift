@@ -107,9 +107,9 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            hue += 0.422
-            saturation += 0.03
-            lightness += 0.25
+            hue += 0.17
+            saturation -= 0.69
+            lightness -= 0.10
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
