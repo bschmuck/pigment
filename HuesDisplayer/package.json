@@ -1,0 +1,17 @@
+{
+  "name": "huesdisplayer",
+  "version": "1.0.0",
+  "description": "Hues Display Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js",
+    "start": "node app.js"
+  },
+  "author": "Brandon Schmuck",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2",
+    "path": "^0.12.7"
+  }
+}

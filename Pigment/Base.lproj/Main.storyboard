@@ -80,15 +80,35 @@
                                         </constraints>
                                         <state key="normal" image="LightOff"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldb-Lv-hlf">
+                                        <rect key="frame" x="63" y="75" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="60s-ck-8zi"/>
+                                            <constraint firstAttribute="width" constant="50" id="WES-dT-StQ"/>
+                                        </constraints>
+                                        <state key="normal" image="PauseIcon"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVK-H2-IoM">
+                                        <rect key="frame" x="118" y="75" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="do2-aU-72h"/>
+                                            <constraint firstAttribute="width" constant="50" id="kJr-ZZ-Qjx"/>
+                                        </constraints>
+                                        <state key="normal" image="CloudOn"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="ldb-Lv-hlf" firstAttribute="centerY" secondItem="jm5-5Q-00q" secondAttribute="centerY" id="7ZP-I9-Ouk"/>
+                                    <constraint firstItem="ZVK-H2-IoM" firstAttribute="centerY" secondItem="ldb-Lv-hlf" secondAttribute="centerY" id="C5w-SE-YHJ"/>
                                     <constraint firstItem="vcl-Dd-S7y" firstAttribute="trailing" secondItem="gvD-pX-zvG" secondAttribute="trailing" id="GwN-pM-ERH"/>
                                     <constraint firstAttribute="trailing" secondItem="gvD-pX-zvG" secondAttribute="trailing" constant="32" id="T71-aY-jkP"/>
+                                    <constraint firstItem="ldb-Lv-hlf" firstAttribute="leading" secondItem="jm5-5Q-00q" secondAttribute="trailing" constant="5" id="TFg-yA-8Tv"/>
                                     <constraint firstItem="gvD-pX-zvG" firstAttribute="top" secondItem="vcl-Dd-S7y" secondAttribute="bottom" constant="10" id="U3Z-r0-d7k"/>
                                     <constraint firstAttribute="bottom" secondItem="gvD-pX-zvG" secondAttribute="bottom" constant="10" id="aa8-j0-WwZ"/>
                                     <constraint firstItem="jm5-5Q-00q" firstAttribute="leading" secondItem="KMf-JP-fTE" secondAttribute="leading" constant="8" id="fkH-H5-AKk"/>
                                     <constraint firstAttribute="bottom" secondItem="jm5-5Q-00q" secondAttribute="bottom" constant="8" id="uQP-Mk-Y1A"/>
+                                    <constraint firstItem="ZVK-H2-IoM" firstAttribute="leading" secondItem="ldb-Lv-hlf" secondAttribute="trailing" constant="5" id="zjI-01-L3f"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhX-8X-myX">
@@ -142,7 +162,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWb-7q-quY">
                                 <rect key="frame" x="0.0" y="266.5" width="375" height="133.5"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="GWB-TU-Neo">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PigArrow" translatesAutoresizingMaskIntoConstraints="NO" id="GWB-TU-Neo">
                                         <rect key="frame" x="8" y="36.5" width="62" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="MXF-u9-WSN"/>
@@ -259,6 +279,7 @@
                     <connections>
                         <outlet property="camFrame" destination="QDo-SG-hYh" id="LwE-iD-Wmk"/>
                         <outlet property="cameraIcon" destination="aeJ-gg-fDV" id="oT5-w7-ZCQ"/>
+                        <outlet property="cloudButton" destination="ZVK-H2-IoM" id="rI3-Hh-v8j"/>
                         <outlet property="color1Label" destination="tmL-HF-DUa" id="Xj5-7K-1MA"/>
                         <outlet property="color1NameLabel" destination="wWT-wH-IQc" id="AnT-Vw-MqA"/>
                         <outlet property="color1View" destination="py1-OI-QoA" id="Z6X-6R-KNW"/>
@@ -276,6 +297,7 @@
                         <outlet property="mainColorNameLabel" destination="l5x-lC-ZAl" id="16k-w2-Wit"/>
                         <outlet property="menuButton" destination="P4b-QE-XVk" id="htT-hH-Bi8"/>
                         <outlet property="modeLabel" destination="BDP-gw-iLO" id="qYu-j9-nox"/>
+                        <outlet property="playIcon" destination="ldb-Lv-hlf" id="hVR-0f-xiV"/>
                         <outlet property="shareButton" destination="D8s-fh-ZBP" id="Zje-LU-PL6"/>
                         <outlet property="showInfo" destination="rfJ-up-x3Z" id="fQC-Sv-tsY"/>
                         <outlet property="toggleLights" destination="jm5-5Q-00q" id="obv-lZ-oDn"/>
@@ -298,7 +320,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfT-ou-ERb">
-                                <rect key="frame" x="16" y="122" width="343" height="525"/>
+                                <rect key="frame" x="16" y="122" width="343" height="395"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModeCell" id="Dyd-Z6-Ybp" customClass="PIGTableViewCell" customModule="Pigment" customModuleProvider="target">
@@ -332,16 +354,26 @@
                                 <color key="textColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PigParty" translatesAutoresizingMaskIntoConstraints="NO" id="ouH-cS-C4U">
+                                <rect key="frame" x="16" y="525" width="140" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="jOr-ko-Qs0"/>
+                                    <constraint firstAttribute="width" constant="140" id="uXU-aZ-E6J"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LfT-ou-ERb" firstAttribute="centerX" secondItem="l5r-4k-aRn" secondAttribute="centerX" id="Hnk-v2-67M"/>
-                            <constraint firstItem="LfT-ou-ERb" firstAttribute="centerY" secondItem="l5r-4k-aRn" secondAttribute="centerY" constant="51" id="Je5-Dj-XzM"/>
-                            <constraint firstItem="1IE-AO-p2z" firstAttribute="top" secondItem="LfT-ou-ERb" secondAttribute="bottom" constant="20" id="Mzk-BO-tdU"/>
+                            <constraint firstItem="1IE-AO-p2z" firstAttribute="top" secondItem="LfT-ou-ERb" secondAttribute="bottom" constant="150" id="Mzk-BO-tdU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ouH-cS-C4U" secondAttribute="leading" id="NIF-8j-QiU"/>
                             <constraint firstItem="LfT-ou-ERb" firstAttribute="top" secondItem="tvv-Rd-nEu" secondAttribute="bottom" constant="8" id="SM1-le-YuI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LfT-ou-ERb" secondAttribute="trailing" id="hEg-fV-qG3"/>
                             <constraint firstAttribute="leadingMargin" secondItem="tvv-Rd-nEu" secondAttribute="leading" constant="-10" id="nkC-MW-j9I"/>
+                            <constraint firstItem="LfT-ou-ERb" firstAttribute="top" secondItem="prq-lb-2wR" secondAttribute="bottom" constant="102" id="oca-6U-1u6"/>
+                            <constraint firstItem="ouH-cS-C4U" firstAttribute="top" secondItem="LfT-ou-ERb" secondAttribute="bottom" constant="8" id="ofx-SH-3zc"/>
                             <constraint firstAttribute="leadingMargin" secondItem="LfT-ou-ERb" secondAttribute="leading" id="tzn-Bn-tUt"/>
+                            <constraint firstItem="1IE-AO-p2z" firstAttribute="top" secondItem="ouH-cS-C4U" secondAttribute="bottom" constant="14" id="va1-tG-rbl"/>
                         </constraints>
                     </view>
                     <connections>
@@ -356,10 +388,13 @@
     </scenes>
     <resources>
         <image name="CameraIcon" width="20" height="18"/>
+        <image name="CloudOn" width="24" height="16"/>
         <image name="InfoIcon" width="20" height="20"/>
         <image name="LightOff" width="16" height="27"/>
         <image name="MenuIcon" width="26" height="19"/>
+        <image name="PauseIcon" width="20" height="20"/>
+        <image name="PigArrow" width="67" height="67"/>
+        <image name="PigParty" width="216" height="231"/>
         <image name="ShareIcon" width="18" height="16"/>
-        <image name="Triangle" width="55" height="67"/>
     </resources>
 </document>

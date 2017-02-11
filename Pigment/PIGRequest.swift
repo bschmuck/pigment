@@ -28,30 +28,32 @@ class PIGRequest: NSObject {
     
     
     //Method to create a new URL request
-    class func urlRequest(urlString: String, httpMethod: urlMethod, dataString: String) -> NSMutableURLRequest {
+    class func urlRequest(urlString: String, httpMethod: urlMethod, dataString: String?, dict: Dictionary<String, Any>?) -> NSMutableURLRequest {
         
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(url: url as URL)
         
-//        if let body = data {
-//            do {
-////                let body = try JSONSerialization.data(withJSONObject: body as NSDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
-//                
-//                request.setValue("\(body.count)", forHTTPHeaderField: "Content-Length")
-//                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//                request.setValue("application/json", forHTTPHeaderField: "Accept")
-//            } catch {
-//                
-//            }
-//        }
+        if let body = dict {
+            do {
+                let body = try JSONSerialization.data(withJSONObject: body as NSDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                
+                request.setValue("\(body.count)", forHTTPHeaderField: "Content-Length")
+                request.setValue("application/josn", forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json", forHTTPHeaderField: "Accept")
+                request.httpBody = body
+            } catch {
+                
+            }
+        }
         
 
-        
-        var postData = dataString.data(using: String.Encoding.ascii, allowLossyConversion: true)
-        let postLength = "\(postData?.count)"
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpBody = postData
+        if let dataString = dataString {
+            var postData = dataString.data(using: String.Encoding.ascii, allowLossyConversion: true)
+            let postLength = "\(postData?.count)"
+            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpBody = postData
+        }
         
         
         switch httpMethod.self {

@@ -17,6 +17,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var camFrame: UIView!
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     
+    @IBOutlet weak var cloudButton: UIButton!
+    @IBOutlet weak var playIcon: UIButton!
     @IBOutlet weak var toggleLights: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var cameraIcon: UIButton!
@@ -49,6 +51,9 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     var textIsBlack = false
     
     var lightsMode = false
+    var isPlaying = true
+    var isUploading = false
+    
     
     var colors: [UIColor] = [UIColor.white, UIColor.white, UIColor.white, UIColor.white, UIColor.white]
 
@@ -87,6 +92,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         cameraIcon.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
         shareButton.addTarget(self, action: #selector(shareColor), for: .touchUpInside)
         toggleLights.addTarget(self, action: #selector(userToggledLights), for: .touchUpInside)
+        playIcon.addTarget(self, action: #selector(togglePlay), for: .touchUpInside)
+        cloudButton.addTarget(self, action: #selector(toggleCloud), for: .touchUpInside)
         
         modeLabel.text = labelVal
         
@@ -154,6 +161,26 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+    func toggleCloud() {
+        if self.isUploading {
+            self.isUploading = false
+            cloudButton.setImage(UIImage(named: "CloudOn"), for: .normal)
+        } else {
+            cloudButton.setImage(UIImage(named: "CloudOff"), for: .normal)
+            self.isUploading = true
+        }
+    }
+    
+    func togglePlay() {
+        if self.isPlaying {
+            self.isPlaying = false
+            playIcon.setImage(UIImage(named: "PlayIcon"), for: .normal)
+        } else {
+            playIcon.setImage(UIImage(named: "PauseIcon"), for: .normal)
+            self.isPlaying = true
+        }
+    }
+    
     func userToggledLights() {
         if !self.lightsMode {
             self.lightsMode = true
@@ -195,16 +222,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        let image = CIImage(cvPixelBuffer: pixelBuffer!)
-        let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
-        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-        let info = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        let context: CGContext = CGContext(data: rgba, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: info.rawValue)!
         
-        let ciContext:CIContext = CIContext.init(options: nil)
-        let cgImage = ciContext.createCGImage(image, from: image.extent)
-        context.draw(cgImage!, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+        
         
 //        let cameraConstant = CGFloat(0.15)
         
@@ -217,117 +236,147 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
 //            let blue = CGFloat(rgba[2]) * multiplier
 //            
 //        } else {
-            let red = CGFloat(rgba[0]) / 255.0
-            let green = CGFloat(rgba[1]) / 255.0
-            let blue = CGFloat(rgba[2]) / 255.0
-            let alpha: CGFloat = CGFloat(rgba[3]) / 255.0
         
-            prevVals.insert((red: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha)), at: counter % Int(numVals))
+        if isPlaying {
+                let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+                let image = CIImage(cvPixelBuffer: pixelBuffer!)
+                let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
+                let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+                let info = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+                let context: CGContext = CGContext(data: rgba, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: info.rawValue)!
+                
+                let ciContext:CIContext = CIContext.init(options: nil)
+                let cgImage = ciContext.createCGImage(image, from: image.extent)
+                context.draw(cgImage!, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+                
         
-            counter += 1
+                let red = CGFloat(rgba[0]) / 255.0
+                let green = CGFloat(rgba[1]) / 255.0
+                let blue = CGFloat(rgba[2]) / 255.0
+                let alpha: CGFloat = CGFloat(rgba[3]) / 255.0
+            
+                prevVals.insert((red: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha)), at: counter % Int(numVals))
+            
+            
 
-        var avgRed: Float = 0.0
-        var avgGreen: Float = 0.0
-        var avgBlue: Float = 0.0
-        var avgAlpha: Float = 0.0
-        
-        for i in 0..<Int(numVals) {
-            if i < prevVals.count {
-                let color = prevVals[i]
-                if let red = color.red, let green = color.green, let blue = color.blue, let alpha = color.alpha {
-                    avgRed += red
-                    avgGreen += green
-                    avgBlue += blue
-                    avgAlpha += alpha
+            var avgRed: Float = 0.0
+            var avgGreen: Float = 0.0
+            var avgBlue: Float = 0.0
+            var avgAlpha: Float = 0.0
+            
+            for i in 0..<Int(numVals) {
+                if i < prevVals.count {
+                    let color = prevVals[i]
+                    if let red = color.red, let green = color.green, let blue = color.blue, let alpha = color.alpha {
+                        avgRed += red
+                        avgGreen += green
+                        avgBlue += blue
+                        avgAlpha += alpha
+                    }
+                }
+                
+            }
+            
+            avgRed /= numVals
+            avgGreen /= numVals
+            avgBlue /= numVals
+            avgAlpha /= numVals
+            
+            PIGSelection.shared.red = Double(avgRed)
+            PIGSelection.shared.green = Double(avgGreen)
+            PIGSelection.shared.blue = Double(avgBlue)
+            PIGSelection.shared.alpha = Double(avgAlpha)
+            
+            let colorVal  = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
+            let color1 = PIGColorManager.getColor1(color: colorVal, mode: PIGSelection.shared.selectedMode)
+            let color2 = PIGColorManager.getColor2(color: colorVal, mode: PIGSelection.shared.selectedMode)
+            let color3 = PIGColorManager.getColor3(color: colorVal, mode: PIGSelection.shared.selectedMode)
+            let color4 = PIGColorManager.getColor4(color: colorVal, mode: PIGSelection.shared.selectedMode)
+            
+            PIGSelection.shared.currentColor = colorVal
+            
+            let name1 = colorNamer.name(for: color1)
+            let name2 = colorNamer.name(for: color2)
+            let name3 = colorNamer.name(for: color3)
+            let name4 = colorNamer.name(for: color4)
+            let nameCurrent = colorNamer.name(for: colorVal)
+            
+            color1NameLabel.text = name1
+            color2NameLabel.text = name2
+            color3NameLabel.text = name3
+            color4NameLabel.text = name4
+            mainColorNameLabel.text = nameCurrent
+            
+            let color1Vals = PIGColorManager.getRGBA(color: color1)
+            let color2Vals = PIGColorManager.getRGBA(color: color2)
+            let color3Vals = PIGColorManager.getRGBA(color: color3)
+            let color4Vals = PIGColorManager.getRGBA(color: color4)
+            
+            colors[0] = colorVal
+            colors[1] = color1
+            colors[2] = color2
+            colors[3] = color3
+            colors[4] = color4
+            
+            if counter % 100 == 0 && isUploading {
+                if let nameCurrent = nameCurrent, let name1 = name1, let name2 = name2, let name3 = name3, let name4 = name4 {
+                    PIGBroadcastManager.broadcastColor(color: colorVal, channel: 3, name: nameCurrent)
+                    PIGBroadcastManager.broadcastColor(color: color1, channel: 1, name: name1)
+                    PIGBroadcastManager.broadcastColor(color: color2, channel: 2, name: name2)
+                    PIGBroadcastManager.broadcastColor(color: color3, channel: 4, name: name3)
+                    PIGBroadcastManager.broadcastColor(color: color4, channel: 5, name: name4)
                 }
             }
             
+            let selection = PIGSelection.shared
+            let threshhold = 105
+            let bgDelta = (Int((selection.red * 0.299) + (selection.green * 0.587) + (selection.blue * 0.114)))
+            if 255 - bgDelta < threshhold  && !textIsBlack {
+                textIsBlack = true
+                self.mainColorLabel.textColor = UIColor.black
+                self.color1Label.textColor = UIColor.black
+                self.color2Label.textColor = UIColor.black
+                self.color3Label.textColor = UIColor.black
+                self.color4Label.textColor = UIColor.black
+                color1NameLabel.textColor = UIColor.black
+                color2NameLabel.textColor = UIColor.black
+                color3NameLabel.textColor = UIColor.black
+                color4NameLabel.textColor = UIColor.black
+                mainColorNameLabel.textColor = UIColor.black
+            } else if textIsBlack {
+                textIsBlack = false
+                self.mainColorLabel.textColor = UIColor.white
+                self.color1Label.textColor = UIColor.white
+                self.color2Label.textColor = UIColor.white
+                self.color3Label.textColor = UIColor.white
+                self.color4Label.textColor = UIColor.white
+                color1NameLabel.textColor = UIColor.white
+                color2NameLabel.textColor = UIColor.white
+                color3NameLabel.textColor = UIColor.white
+                color4NameLabel.textColor = UIColor.white
+                mainColorNameLabel.textColor = UIColor.white
+            }
+            
+            
+            DispatchQueue.main.async {
+                self.mainColorLabel.text = "r: \(255*avgRed), g: \(255*avgGreen), b: \(255*avgBlue), a: \(avgAlpha)"
+                self.color1Label.text = "r: \(255*color1Vals.red), g: \(255*color1Vals.green), b: \(255*color1Vals.blue), a: \(color1Vals.alpha)"
+                self.color2Label.text = "r: \(255*color2Vals.red), g: \(255*color2Vals.green), b: \(255*color2Vals.blue), a: \(color2Vals.alpha)"
+                self.color3Label.text = "r: \(255*color3Vals.red), g: \(255*color3Vals.green), b: \(255*color3Vals.blue), a: \(color3Vals.alpha)"
+                self.color4Label.text = "r: \(255*color4Vals.red), g: \(255*color4Vals.green), b: \(255*color4Vals.blue), a: \(color4Vals.alpha)"
+                self.colorView.backgroundColor = colorVal
+                self.color1View.backgroundColor = color1
+                self.color2View.backgroundColor = color2
+                self.color3View.backgroundColor = color3
+                self.color4View.backgroundColor = color4
+            }
         }
-        
-        avgRed /= numVals
-        avgGreen /= numVals
-        avgBlue /= numVals
-        avgAlpha /= numVals
-        
-        PIGSelection.shared.red = Double(avgRed)
-        PIGSelection.shared.green = Double(avgGreen)
-        PIGSelection.shared.blue = Double(avgBlue)
-        PIGSelection.shared.alpha = Double(avgAlpha)
-        
-        let colorVal  = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
-        let color1 = PIGColorManager.getColor1(color: colorVal, mode: PIGSelection.shared.selectedMode)
-        let color2 = PIGColorManager.getColor2(color: colorVal, mode: PIGSelection.shared.selectedMode)
-        let color3 = PIGColorManager.getColor3(color: colorVal, mode: PIGSelection.shared.selectedMode)
-        let color4 = PIGColorManager.getColor4(color: colorVal, mode: PIGSelection.shared.selectedMode)
-        
-        PIGSelection.shared.currentColor = colorVal
-        
-        color1NameLabel.text = colorNamer.name(for: color1)
-        color2NameLabel.text = colorNamer.name(for: color2)
-        color3NameLabel.text = colorNamer.name(for: color3)
-        color4NameLabel.text = colorNamer.name(for: color4)
-        mainColorNameLabel.text = colorNamer.name(for: colorVal)
-        
-        let color1Vals = PIGColorManager.getRGBA(color: color1)
-        let color2Vals = PIGColorManager.getRGBA(color: color2)
-        let color3Vals = PIGColorManager.getRGBA(color: color3)
-        let color4Vals = PIGColorManager.getRGBA(color: color4)
-        
-        colors[0] = colorVal
-        colors[1] = color1
-        colors[2] = color2
-        colors[3] = color3
-        colors[4] = color4
-        
-        
+        counter += 1
         if(counter % 30) == 0 && lightsMode {
             PIGHuesManager.setLightBulbs(color: colors[Int(arc4random_uniform(5))], lightNum: 1)
             PIGHuesManager.setLightBulbs(color: colors[Int(arc4random_uniform(5))], lightNum: 2)
             PIGHuesManager.setLightBulbs(color: colors[Int(arc4random_uniform(5))], lightNum: 3)
-
-        }
-        
-        let selection = PIGSelection.shared
-        let threshhold = 105
-        let bgDelta = (Int((selection.red * 0.299) + (selection.green * 0.587) + (selection.blue * 0.114)))
-        if 255 - bgDelta < threshhold  && !textIsBlack {
-            textIsBlack = true
-            self.mainColorLabel.textColor = UIColor.black
-            self.color1Label.textColor = UIColor.black
-            self.color2Label.textColor = UIColor.black
-            self.color3Label.textColor = UIColor.black
-            self.color4Label.textColor = UIColor.black
-            color1NameLabel.textColor = UIColor.black
-            color2NameLabel.textColor = UIColor.black
-            color3NameLabel.textColor = UIColor.black
-            color4NameLabel.textColor = UIColor.black
-            mainColorNameLabel.textColor = UIColor.black
-        } else if textIsBlack {
-            textIsBlack = false
-            self.mainColorLabel.textColor = UIColor.white
-            self.color1Label.textColor = UIColor.white
-            self.color2Label.textColor = UIColor.white
-            self.color3Label.textColor = UIColor.white
-            self.color4Label.textColor = UIColor.white
-            color1NameLabel.textColor = UIColor.white
-            color2NameLabel.textColor = UIColor.white
-            color3NameLabel.textColor = UIColor.white
-            color4NameLabel.textColor = UIColor.white
-            mainColorNameLabel.textColor = UIColor.white
-        }
-        
-        
-        DispatchQueue.main.async {
-            self.mainColorLabel.text = "r: \(255*avgRed), g: \(255*avgGreen), b: \(255*avgBlue), a: \(avgAlpha)"
-            self.color1Label.text = "r: \(255*color1Vals.red), g: \(255*color1Vals.green), b: \(255*color1Vals.blue), a: \(color1Vals.alpha)"
-            self.color2Label.text = "r: \(255*color2Vals.red), g: \(255*color2Vals.green), b: \(255*color2Vals.blue), a: \(color2Vals.alpha)"
-            self.color3Label.text = "r: \(255*color3Vals.red), g: \(255*color3Vals.green), b: \(255*color3Vals.blue), a: \(color3Vals.alpha)"
-            self.color4Label.text = "r: \(255*color4Vals.red), g: \(255*color4Vals.green), b: \(255*color4Vals.blue), a: \(color4Vals.alpha)"
-            self.colorView.backgroundColor = colorVal
-            self.color1View.backgroundColor = color1
-            self.color2View.backgroundColor = color2
-            self.color3View.backgroundColor = color3
-            self.color4View.backgroundColor = color4
+            
         }
     }
     
