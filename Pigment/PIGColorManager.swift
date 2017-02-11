@@ -30,6 +30,9 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
+            saturation -= 0.04
+            lightness -= 0.17
+            
             
             return UIColor.red
         case .analagous:
@@ -44,6 +47,13 @@ class PIGColorManager: NSObject {
         switch mode {
             
         case .complimentary:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            lightness += 0.05
             return UIColor.red
         case .analagous:
             return UIColor.red
@@ -57,6 +67,13 @@ class PIGColorManager: NSObject {
         switch mode {
             
         case .complimentary:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            hue += 0.5
+            lightness -= 0.12
             return UIColor.red
         case .analagous:
             return UIColor.red
@@ -70,6 +87,13 @@ class PIGColorManager: NSObject {
         switch mode {
             
         case .complimentary:
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue += 0.05
             return UIColor.red
         case .analagous:
             return UIColor.red
