@@ -21,6 +21,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     let stillImageOutput = AVCaptureStillImageOutput()
     var error: NSError?
     
+    @IBOutlet weak var color1Label: UILabel!
+    
     @IBOutlet weak var modeLabel: UILabel!
     @IBOutlet weak var color1View: UIView!
     @IBOutlet weak var color2View: UIView!
@@ -32,6 +34,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         var labelVal = ""
+        
+        color1Label.isHidden = true
         
         switch PIGSelection.shared.selectedMode {
             
@@ -110,9 +114,11 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         if self.showingInfo {
              self.videoPreviewLayer?.isHidden = true
              self.showingInfo = false
+             self.color1Label.isHidden = true
         } else {
             self.videoPreviewLayer?.isHidden = false
             self.showingInfo = true
+            self.color1Label.isHidden = false
         }
     }
     
