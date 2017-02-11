@@ -58,6 +58,10 @@ class PIGColorManager: NSObject {
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
             hue -= 0.21
+            if hue < 0
+            {
+                hue = hue - 1
+            }
             saturation += 0.56
             lightness += 0.71
             
@@ -91,8 +95,11 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            saturation -= 0.09
-            lightness -= 0.27
+            saturation -= 0.10
+            lightness -= 0.06
+            
+            
+            
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
@@ -135,7 +142,7 @@ class PIGColorManager: NSObject {
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
             saturation -= 0.09
-            lightness -= 0.40
+            lightness -= 0.27
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
@@ -177,8 +184,9 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            saturation -= 0.10
-            lightness -= 0.06
+            saturation -= 0.09
+            lightness -= 0.40
+            
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
@@ -190,6 +198,10 @@ class PIGColorManager: NSObject {
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
             hue -= 0.6361
+            if hue < 0
+            {
+                hue = 1 - hue
+            }
             saturation += 0.35
             lightness += 0.21
             
