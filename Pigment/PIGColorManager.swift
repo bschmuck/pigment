@@ -64,20 +64,12 @@ class PIGColorManager: NSObject {
             var blue: CGFloat = 0.0
             var alpha: CGFloat = 0.0
             
-            
             color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-            red*=255
-            green*=255
-            blue*=255
             
             var color2=Array<CGFloat>()
             color2.append(blue)
             color2.append(red)
             color2.append(green)
-        
-            
-           
-            
             
             return UIColor(colorLiteralRed: Float(color2[0]), green: Float(color2[1]), blue: Float(color2[2]), alpha: Float(alpha))
             
