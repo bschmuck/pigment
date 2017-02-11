@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		F07675611E4E9B6C00536CB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675601E4E9B6C00536CB3 /* AppDelegate.swift */; };
-		F07675631E4E9B6C00536CB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675621E4E9B6C00536CB3 /* ViewController.swift */; };
+		F07675631E4E9B6C00536CB3 /* PIGMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675621E4E9B6C00536CB3 /* PIGMainViewController.swift */; };
 		F07675661E4E9B6C00536CB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F07675641E4E9B6C00536CB3 /* Main.storyboard */; };
 		F07675681E4E9B6C00536CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F07675671E4E9B6C00536CB3 /* Assets.xcassets */; };
 		F076756B1E4E9B6C00536CB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F07675691E4E9B6C00536CB3 /* LaunchScreen.storyboard */; };
 		F07675761E4E9B6C00536CB3 /* PigmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675751E4E9B6C00536CB3 /* PigmentTests.swift */; };
 		F07675811E4E9B6C00536CB3 /* PigmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675801E4E9B6C00536CB3 /* PigmentUITests.swift */; };
+		F076758F1E4EA98200536CB3 /* PIGColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076758E1E4EA98200536CB3 /* PIGColorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		F076755D1E4E9B6C00536CB3 /* Pigment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pigment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07675601E4E9B6C00536CB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F07675621E4E9B6C00536CB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F07675621E4E9B6C00536CB3 /* PIGMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIGMainViewController.swift; sourceTree = "<group>"; };
 		F07675651E4E9B6C00536CB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F07675671E4E9B6C00536CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F076756A1E4E9B6C00536CB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		F076757C1E4E9B6C00536CB3 /* PigmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PigmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07675801E4E9B6C00536CB3 /* PigmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigmentUITests.swift; sourceTree = "<group>"; };
 		F07675821E4E9B6C00536CB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F076758E1E4EA98200536CB3 /* PIGColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				F07675601E4E9B6C00536CB3 /* AppDelegate.swift */,
-				F07675621E4E9B6C00536CB3 /* ViewController.swift */,
+				F07675621E4E9B6C00536CB3 /* PIGMainViewController.swift */,
+				F076758E1E4EA98200536CB3 /* PIGColorManager.swift */,
 				F07675641E4E9B6C00536CB3 /* Main.storyboard */,
 				F07675671E4E9B6C00536CB3 /* Assets.xcassets */,
 				F07675691E4E9B6C00536CB3 /* LaunchScreen.storyboard */,
@@ -262,8 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F07675631E4E9B6C00536CB3 /* ViewController.swift in Sources */,
+				F07675631E4E9B6C00536CB3 /* PIGMainViewController.swift in Sources */,
 				F07675611E4E9B6C00536CB3 /* AppDelegate.swift in Sources */,
+				F076758F1E4EA98200536CB3 /* PIGColorManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +518,7 @@
 				F07675871E4E9B6C00536CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F07675881E4E9B6C00536CB3 /* Build configuration list for PBXNativeTarget "PigmentTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +527,7 @@
 				F076758A1E4E9B6C00536CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F076758B1E4E9B6C00536CB3 /* Build configuration list for PBXNativeTarget "PigmentUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +536,7 @@
 				F076758D1E4E9B6C00536CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

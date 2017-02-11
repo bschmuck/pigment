@@ -9,8 +9,9 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate {
+class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var colorView: UIView!
     let captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
     var error: NSError?
@@ -120,7 +121,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptu
         avgAlpha /= numVals
         
         DispatchQueue.main.async {
-            self.view.backgroundColor = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
+            self.colorView.backgroundColor = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
         }
     }
 
