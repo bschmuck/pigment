@@ -291,4 +291,23 @@ class PIGColorManager: NSObject {
             
         }
     }
+    
+    class func imageWithColors(colors: [UIColor]) -> UIImage {
+        
+        let rect = CGRect(origin: CGPoint(x: 0, y:0), size: CGSize(width: 500, height: 500))
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        var rects = Array<CGRect>()
+
+        for i in 0..<5 {
+            let rect = CGRect(origin: CGPoint(x: 0, y:100*i), size: CGSize(width: 500, height: 100))
+            context.setFillColor(colors[i].cgColor)
+            context.fill(rect)
+            rects.append(rect)
+        }
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
 }

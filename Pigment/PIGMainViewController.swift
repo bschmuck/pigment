@@ -300,9 +300,16 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func shareColor() {
         let shareContent = "\(self.modeLabel.text!):\n\(self.mainColorLabel.text!)\n\(self.color1Label.text!)\n\(self.color2Label.text!)\n\(self.color3Label.text!)\n\(self.color4Label.text!)\n"
-        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString], applicationActivities: nil)
         
-        present(activityViewController, animated: true, completion: {})
+        let colors = [self.color1View.backgroundColor!, self.color2View.backgroundColor!, self.colorView.backgroundColor!, self.color3View.backgroundColor!, self.color4View.backgroundColor!]
+        
+        let image = PIGColorManager.imageWithColors(colors: colors)
+        
+        DispatchQueue.main.async {
+            let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString, image as UIImage], applicationActivities: nil)
+            
+            self.present(activityViewController, animated: true, completion: {})
+        }
     }
 
     override func didReceiveMemoryWarning() {
