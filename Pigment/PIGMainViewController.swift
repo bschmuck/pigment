@@ -17,6 +17,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     let stillImageOutput = AVCaptureStillImageOutput()
     var error: NSError?
     
+    @IBOutlet weak var modeLabel: UILabel!
     @IBOutlet weak var color1View: UIView!
     @IBOutlet weak var color2View: UIView!
     @IBOutlet weak var color3View: UIView!
@@ -25,6 +26,24 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        var labelVal = ""
+
+        switch PIGSelection.shared.selectedMode {
+            
+        case .analagous:
+            labelVal = "Analagous"
+        case .shade:
+            labelVal = "Shade"
+        case .compound:
+            labelVal = "Compound"
+        case .complimentary:
+            labelVal = "Complimentary"
+        case .triade:
+            labelVal = "Triade"
+            
+        }
+        
+        modeLabel.text = labelVal
         
         if self.revealViewController() != nil {
             menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
@@ -133,10 +152,10 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         avgAlpha /= numVals
         
         let colorVal  = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
-        let color1 = PIGColorManager.getColor1(color: colorVal, mode: .complimentary)
-        let color2 = PIGColorManager.getColor2(color: colorVal, mode: .complimentary)
-        let color3 = PIGColorManager.getColor3(color: colorVal, mode: .complimentary)
-        let color4 = PIGColorManager.getColor4(color: colorVal, mode: .complimentary)
+        let color1 = PIGColorManager.getColor1(color: colorVal, mode: PIGSelection.shared.selectedMode)
+        let color2 = PIGColorManager.getColor2(color: colorVal, mode: PIGSelection.shared.selectedMode)
+        let color3 = PIGColorManager.getColor3(color: colorVal, mode: PIGSelection.shared.selectedMode)
+        let color4 = PIGColorManager.getColor4(color: colorVal, mode: PIGSelection.shared.selectedMode)
         
         
         DispatchQueue.main.async {
