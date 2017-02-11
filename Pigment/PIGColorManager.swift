@@ -59,7 +59,13 @@ class PIGColorManager: NSObject {
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
         case .triade:
-            return UIColor.red
+            var red: CGFloat = 0.0
+            var green: CGFloat = 0.0
+            var blue: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            
+            color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
@@ -115,7 +121,13 @@ class PIGColorManager: NSObject {
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
         case .triade:
-            return UIColor.red
+            var red: CGFloat = 0.0
+            var green: CGFloat = 0.0
+            var blue: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            
+            color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
         case  .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
@@ -176,7 +188,13 @@ class PIGColorManager: NSObject {
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
         case .triade:
-            return UIColor.red
+            var red: CGFloat = 0.0
+            var green: CGFloat = 0.0
+            var blue: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            
+            color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
@@ -233,7 +251,13 @@ class PIGColorManager: NSObject {
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
         case .triade:
-            return UIColor.red
+            var red: CGFloat = 0.0
+            var green: CGFloat = 0.0
+            var blue: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            
+            color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0

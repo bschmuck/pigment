@@ -11,4 +11,5 @@ import UIKit
 class PIGSelection: NSObject {
     static let shared = PIGSelection()
     var selectedMode: PIGMode = .complimentary
+    var currentColor = UIColor.white
 }
