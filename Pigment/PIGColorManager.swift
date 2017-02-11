@@ -8,22 +8,65 @@
 
 import UIKit
 
+
+enum PIGMode {
+    case complimentary
+    case triade
+    case analagous
+}
+
 class PIGColorManager: NSObject {
     
     //Returns a complementary color of the given color
-    class func getComplementaryColor1(color: UIColor) -> UIColor {
-        return UIColor.red
+    class func getColor1(color: UIColor, mode: PIGMode) -> UIColor {
+        switch mode {
+            
+        case .complimentary:
+            return UIColor.red
+        case .analagous:
+            return UIColor.red
+        case .triade:
+            return UIColor.red
+            
+        }
     }
     
-    class func getComplementaryColor2(color: UIColor) -> UIColor {
-        return UIColor.red
+    class func getColor2(color: UIColor, mode: PIGMode) -> UIColor {
+        switch mode {
+            
+        case .complimentary:
+            return UIColor.red
+        case .analagous:
+            return UIColor.red
+        case .triade:
+            return UIColor.red
+            
+        }
     }
     
-    class func getComplementaryColor3(color: UIColor) -> UIColor {
-        return UIColor.red
+    class func getColor3(color: UIColor, mode: PIGMode) -> UIColor {
+        switch mode {
+            
+        case .complimentary:
+            return UIColor.red
+        case .analagous:
+            return UIColor.red
+        case .triade:
+            return UIColor.red
+            
+        }
     }
     
-    class func getComplementaryColor4(color: UIColor) -> UIColor {
-        return UIColor.red
+    class func getColor4(color: UIColor, mode: PIGMode) -> UIColor {
+        switch mode {
+            
+        case .complimentary:
+            return UIColor.red
+        case .analagous:
+            return UIColor.red
+        case .triade:
+            return UIColor.red
+            
+        }
     }
 }

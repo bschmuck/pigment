@@ -126,10 +126,10 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         avgAlpha /= numVals
         
         let colorVal  = UIColor(colorLiteralRed: Float(avgRed), green: Float(avgGreen), blue: Float(avgBlue), alpha: avgAlpha)
-        let color1 = PIGColorManager.getComplementaryColor1(color: colorVal)
-        let color2 = PIGColorManager.getComplementaryColor1(color: colorVal)
-        let color3 = PIGColorManager.getComplementaryColor1(color: colorVal)
-        let color4 = PIGColorManager.getComplementaryColor1(color: colorVal)
+        let color1 = PIGColorManager.getColor1(color: colorVal, mode: .complimentary)
+        let color2 = PIGColorManager.getColor2(color: colorVal, mode: .complimentary)
+        let color3 = PIGColorManager.getColor3(color: colorVal, mode: .complimentary)
+        let color4 = PIGColorManager.getColor4(color: colorVal, mode: .complimentary)
         
         
         DispatchQueue.main.async {
