@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  Pigment
@@ -16,6 +17,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var camFrame: UIView!
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     
+    @IBOutlet weak var toggleLights: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var cameraIcon: UIButton!
     @IBOutlet weak var colorView: UIView!
@@ -45,6 +47,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     var showingInfo = false
     var showingCamera = false
     var textIsBlack = false
+    
+    var lightsMode = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +84,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         showInfo.addTarget(self, action: #selector(toggleInfo), for: .touchUpInside)
         cameraIcon.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
         shareButton.addTarget(self, action: #selector(shareColor), for: .touchUpInside)
+        toggleLights.addTarget(self, action: #selector(userToggledLights), for: .touchUpInside)
         
         modeLabel.text = labelVal
         
@@ -147,6 +152,16 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+    func userToggledLights() {
+        if !self.lightsMode {
+            self.lightsMode = true
+            toggleLights.setImage(UIImage(named: "LightOn"), for: .normal)
+        } else {
+            self.lightsMode = false
+            toggleLights.setImage(UIImage(named: "LightOff"), for: .normal)
+        }
+    }
+    
     func toggleInfo() {
         if self.showingInfo {
              self.showingInfo = false
@@ -174,6 +189,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
             mainColorNameLabel.isHidden = false
         }
     }
+    
+
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
@@ -253,6 +270,13 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color2Vals = PIGColorManager.getRGBA(color: color2)
         let color3Vals = PIGColorManager.getRGBA(color: color3)
         let color4Vals = PIGColorManager.getRGBA(color: color4)
+        
+        if(counter % 30) == 0 && lightsMode {
+            PIGHuesManager.setLightBulbs(color: colorVal, lightNum: 1)
+            PIGHuesManager.setLightBulbs(color: color1, lightNum: 2)
+            PIGHuesManager.setLightBulbs(color: color4, lightNum: 3)
+
+        }
         
         let selection = PIGSelection.shared
         var threshhold = 105
