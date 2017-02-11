@@ -57,13 +57,10 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            hue -= 0.21
-            if hue < 0
-            {
-                hue = hue - 1
-            }
-            saturation += 0.56
-            lightness += 0.71
+            hue += 0.047222
+            saturation -= 0.45
+            lightness -= 0.01
+            
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
@@ -110,9 +107,9 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            hue += 0.122
-            saturation += 0.82
-            lightness -= 0.51
+            hue += 0.422
+            saturation += 0.03
+            lightness += 0.25
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
@@ -153,9 +150,9 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            hue += 0.6194
+            hue += 0.3361111
             saturation += 0.05
-            lightness += 0.12
+            lightness += 0.13
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         }
@@ -197,13 +194,9 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            hue -= 0.6361
-            if hue < 0
-            {
-                hue = 1 - hue
-            }
-            saturation += 0.35
-            lightness += 0.21
+            hue += 0.2805
+            saturation -= 0.06
+            lightness -= 0.15
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
