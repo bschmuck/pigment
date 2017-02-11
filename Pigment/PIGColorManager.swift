@@ -36,7 +36,18 @@ class PIGColorManager: NSObject {
             lightness -= 0.17
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         case .analagous:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue += 0.0583333333
+            saturation -= 0.20
+            lightness -= 0.12
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
         case .triade:
             return UIColor.red
         case .shade:
@@ -82,7 +93,17 @@ class PIGColorManager: NSObject {
             lightness += 0.05
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         case .analagous:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue += 0.113888
+            lightness += 0.15
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
         case .triade:
             return UIColor.red
         case  .shade:
@@ -107,7 +128,7 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
             
-            hue += 0.17
+            hue += 0.047222
             saturation -= 0.69
             lightness -= 0.10
             
@@ -128,7 +149,18 @@ class PIGColorManager: NSObject {
             lightness -= 0.12
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         case .analagous:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue -= 0.069444
+            saturation -= 0.20
+            lightness -= 0.12
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
         case .triade:
             return UIColor.red
         case .shade:
@@ -171,7 +203,17 @@ class PIGColorManager: NSObject {
             hue += 0.5
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         case .analagous:
-            return UIColor.red
+            var hue: CGFloat = 0.0
+            var saturation: CGFloat = 0.0
+            var lightness: CGFloat = 0.0
+            var alpha: CGFloat = 0.0
+            color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+            hue += 0.14166667
+            lightness += 0.05
+            
+            return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+            
         case .triade:
             return UIColor.red
         case .shade:
