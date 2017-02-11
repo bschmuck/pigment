@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  Pigment
@@ -175,6 +176,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+
+    
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         let image = CIImage(cvPixelBuffer: pixelBuffer!)
@@ -253,6 +256,13 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color2Vals = PIGColorManager.getRGBA(color: color2)
         let color3Vals = PIGColorManager.getRGBA(color: color3)
         let color4Vals = PIGColorManager.getRGBA(color: color4)
+        
+        if(counter % 30) == 0 {
+            PIGHuesManager.setLightBulbs(color: colorVal, lightNum: 1)
+            PIGHuesManager.setLightBulbs(color: color1, lightNum: 2)
+            PIGHuesManager.setLightBulbs(color: color4, lightNum: 3)
+
+        }
         
         let selection = PIGSelection.shared
         var threshhold = 105

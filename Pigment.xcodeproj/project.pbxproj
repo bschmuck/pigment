@@ -23,6 +23,9 @@
 		F07675971E4ECA4100536CB3 /* PIGSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675961E4ECA4100536CB3 /* PIGSidebarViewController.swift */; };
 		F07675991E4ECCBA00536CB3 /* PIGSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675981E4ECCBA00536CB3 /* PIGSelection.swift */; };
 		F076759C1E4EE1A700536CB3 /* DBColorNames.m in Sources */ = {isa = PBXBuildFile; fileRef = F076759B1E4EE1A700536CB3 /* DBColorNames.m */; };
+		F076759E1E4F6D6200536CB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F076759D1E4F6D6200536CB3 /* AVFoundation.framework */; };
+		F07675A01E4F724A00536CB3 /* PIGHuesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076759F1E4F724A00536CB3 /* PIGHuesManager.swift */; };
+		F07675A21E4F727900536CB3 /* PIGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675A11E4F727900536CB3 /* PIGRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		F07675981E4ECCBA00536CB3 /* PIGSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGSelection.swift; sourceTree = "<group>"; };
 		F076759A1E4EE1A700536CB3 /* DBColorNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBColorNames.h; sourceTree = "<group>"; };
 		F076759B1E4EE1A700536CB3 /* DBColorNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBColorNames.m; sourceTree = "<group>"; };
+		F076759D1E4F6D6200536CB3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F076759F1E4F724A00536CB3 /* PIGHuesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGHuesManager.swift; sourceTree = "<group>"; };
+		F07675A11E4F727900536CB3 /* PIGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F076759E1E4F6D6200536CB3 /* AVFoundation.framework in Frameworks */,
 				C891A1FB575F4BDEBC3747B9 /* Pods_Pigment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +114,7 @@
 		0A9B44690BA9B0A2B786AB7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F076759D1E4F6D6200536CB3 /* AVFoundation.framework */,
 				79344E8FD3A6AA0C21C4C0DF /* Pods_Pigment.framework */,
 				A11D41C037D4CA82A0D5E3E5 /* Pods_PigmentTests.framework */,
 				BD2F463D61B3268C6B05724C /* Pods_PigmentUITests.framework */,
@@ -158,7 +166,9 @@
 				F07675981E4ECCBA00536CB3 /* PIGSelection.swift */,
 				F07675961E4ECA4100536CB3 /* PIGSidebarViewController.swift */,
 				F07675941E4ECA2000536CB3 /* PIGTableViewCell.swift */,
+				F076759F1E4F724A00536CB3 /* PIGHuesManager.swift */,
 				F07675641E4E9B6C00536CB3 /* Main.storyboard */,
+				F07675A11E4F727900536CB3 /* PIGRequest.swift */,
 				F07675671E4E9B6C00536CB3 /* Assets.xcassets */,
 				F07675691E4E9B6C00536CB3 /* LaunchScreen.storyboard */,
 				F07675911E4EBAAD00536CB3 /* ISColorWheel.h */,
@@ -474,6 +484,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F07675A21E4F727900536CB3 /* PIGRequest.swift in Sources */,
+				F07675A01E4F724A00536CB3 /* PIGHuesManager.swift in Sources */,
 				F07675631E4E9B6C00536CB3 /* PIGMainViewController.swift in Sources */,
 				F07675931E4EBAAD00536CB3 /* ISColorWheel.m in Sources */,
 				F076759C1E4EE1A700536CB3 /* DBColorNames.m in Sources */,
@@ -635,10 +647,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = W2K89DDM88;
 				INFOPLIST_FILE = Pigment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bschmuck.Pigment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bschmuck.Pigment2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pigment/Pigment-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -652,10 +665,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = W2K89DDM88;
 				INFOPLIST_FILE = Pigment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bschmuck.Pigment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bschmuck.Pigment2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pigment/Pigment-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
