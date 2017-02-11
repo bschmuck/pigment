@@ -84,36 +84,12 @@ class PIGColorManager: NSObject {
                 color1.append(blue)
             }
             
-            var color2=Array<CGFloat>()
-            color2.append(blue)
-            color2.append(red)
-            color2.append(green)
-            
-            var color3=Array<CGFloat>()
-            color3.append(red)
-            color3.append(green)
-            color3.append(blue)
-            
-            var color4=Array<CGFloat>()
-            color4.append(green)
-            color4.append(blue)
-            color4.append(red)
-            
-            var color5=Array<CGFloat>()
-            if(red-10>0&&green-10>0&&blue-10>0)
-            {
-                color5.append(green-10)
-                color5.append(blue-10)
-                color5.append(red-10)
-            }
-            else
-            {
-                color5.append(green)
-                color5.append(blue)
-                color5.append(red)
-            }
         
-            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
+            
+           
+            
+            
+            return UIColor(colorLiteralRed: Float(color1[0]), green: Float(color1[1]), blue: Float(color1[2]), alpha: Float(alpha))
             
         case .shade:
             var hue: CGFloat = 0.0
@@ -182,7 +158,13 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             
             color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
+            
+            var color2=Array<CGFloat>()
+            color2.append(blue)
+            color2.append(red)
+            color2.append(green)
+            
+            return UIColor(colorLiteralRed: Float(color2[0]), green: Float(color2[1]), blue: Float(color2[2]), alpha: Float(alpha))
         case  .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
@@ -254,7 +236,12 @@ class PIGColorManager: NSObject {
             var alpha: CGFloat = 0.0
             
             color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
+            var color4=Array<CGFloat>()
+            color4.append(green)
+            color4.append(blue)
+            color4.append(red)
+            
+            return UIColor(colorLiteralRed: Float(color4[0]), green: Float(color4[1]), blue: Float(color4[2]), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
@@ -319,12 +306,26 @@ class PIGColorManager: NSObject {
             var blue: CGFloat = 0.0
             var alpha: CGFloat = 0.0
             
+            
             color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
             
             
+                        var color5=Array<CGFloat>()
+            if(red-10>0&&green-10>0&&blue-10>0)
+            {
+                color5.append(green-10)
+                color5.append(blue-10)
+                color5.append(red-10)
+            }
+            else
+            {
+                color5.append(green)
+                color5.append(blue)
+                color5.append(red)
+            }
+
             
-            
-            return UIColor(colorLiteralRed: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
+            return UIColor(colorLiteralRed: Float(color5[0]), green: Float(color5[1]), blue: Float(color5[2]), alpha: Float(alpha))
         case .shade:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
