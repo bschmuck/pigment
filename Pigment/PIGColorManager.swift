@@ -20,6 +20,16 @@ enum PIGMode {
 
 class PIGColorManager: NSObject {
     
+    class func getRGBA(color: UIColor) -> (red: Float, green: Float, blue: Float, alpha: Float) {
+        var red: CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+        
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return (red: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
+    }
+    
     //Returns a complementary color of the given color
     class func getColor1(color: UIColor, mode: PIGMode) -> UIColor {
         switch mode {
