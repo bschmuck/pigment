@@ -293,6 +293,7 @@ class PIGColorManager: NSObject {
             
             lightness += 0.05
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+        
         case .analagous:
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
@@ -303,7 +304,6 @@ class PIGColorManager: NSObject {
             hue += 0.01666667
             saturation -= 0.10
             lightness -= 0.38
-            
             
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
             
@@ -366,6 +366,7 @@ class PIGColorManager: NSObject {
             lightness -= 0.12
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         case .analagous:
+           
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
             var lightness: CGFloat = 0.0
@@ -430,11 +431,14 @@ class PIGColorManager: NSObject {
             }
             return UIColor(hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
         case .analagous:
+            
             var hue: CGFloat = 0.0
             var saturation: CGFloat = 0.0
             var lightness: CGFloat = 0.0
             var alpha: CGFloat = 0.0
             color.getHue(&hue, saturation: &saturation, lightness: &lightness, alpha: &alpha)
+            
+         
             
             hue += 0.03333
             lightness += 0.03
