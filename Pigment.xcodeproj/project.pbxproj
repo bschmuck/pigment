@@ -22,6 +22,7 @@
 		F07675951E4ECA2000536CB3 /* PIGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675941E4ECA2000536CB3 /* PIGTableViewCell.swift */; };
 		F07675971E4ECA4100536CB3 /* PIGSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675961E4ECA4100536CB3 /* PIGSidebarViewController.swift */; };
 		F07675991E4ECCBA00536CB3 /* PIGSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07675981E4ECCBA00536CB3 /* PIGSelection.swift */; };
+		F076759C1E4EE1A700536CB3 /* DBColorNames.m in Sources */ = {isa = PBXBuildFile; fileRef = F076759B1E4EE1A700536CB3 /* DBColorNames.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		F07675941E4ECA2000536CB3 /* PIGTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGTableViewCell.swift; sourceTree = "<group>"; };
 		F07675961E4ECA4100536CB3 /* PIGSidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGSidebarViewController.swift; sourceTree = "<group>"; };
 		F07675981E4ECCBA00536CB3 /* PIGSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIGSelection.swift; sourceTree = "<group>"; };
+		F076759A1E4EE1A700536CB3 /* DBColorNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBColorNames.h; sourceTree = "<group>"; };
+		F076759B1E4EE1A700536CB3 /* DBColorNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBColorNames.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				F07675671E4E9B6C00536CB3 /* Assets.xcassets */,
 				F07675691E4E9B6C00536CB3 /* LaunchScreen.storyboard */,
 				F07675911E4EBAAD00536CB3 /* ISColorWheel.h */,
+				F076759A1E4EE1A700536CB3 /* DBColorNames.h */,
+				F076759B1E4EE1A700536CB3 /* DBColorNames.m */,
 				F07675921E4EBAAD00536CB3 /* ISColorWheel.m */,
 				F076756C1E4E9B6C00536CB3 /* Info.plist */,
 				F07675901E4EBAAD00536CB3 /* Pigment-Bridging-Header.h */,
@@ -471,6 +476,7 @@
 			files = (
 				F07675631E4E9B6C00536CB3 /* PIGMainViewController.swift in Sources */,
 				F07675931E4EBAAD00536CB3 /* ISColorWheel.m in Sources */,
+				F076759C1E4EE1A700536CB3 /* DBColorNames.m in Sources */,
 				F07675971E4ECA4100536CB3 /* PIGSidebarViewController.swift in Sources */,
 				F07675951E4ECA2000536CB3 /* PIGTableViewCell.swift in Sources */,
 				F07675611E4E9B6C00536CB3 /* AppDelegate.swift in Sources */,

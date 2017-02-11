@@ -22,12 +22,19 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     let stillImageOutput = AVCaptureStillImageOutput()
     var error: NSError?
     
+    let colorNamer = DBColorNames()
+    
     @IBOutlet weak var color1Label: UILabel!
     @IBOutlet weak var color2Label: UILabel!
     @IBOutlet weak var mainColorLabel: UILabel!
     @IBOutlet weak var color3Label: UILabel!
     @IBOutlet weak var color4Label: UILabel!
+    @IBOutlet weak var color1NameLabel: UILabel!
+    @IBOutlet weak var color2NameLabel: UILabel!
+    @IBOutlet weak var mainColorNameLabel: UILabel!
     
+    @IBOutlet weak var color3NameLabel: UILabel!
+    @IBOutlet weak var color4NameLabel: UILabel!
     @IBOutlet weak var modeLabel: UILabel!
     @IBOutlet weak var color1View: UIView!
     @IBOutlet weak var color2View: UIView!
@@ -42,6 +49,16 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         var labelVal = ""
         
         color1Label.isHidden = true
+        color2Label.isHidden = true
+        color3Label.isHidden = true
+        color4Label.isHidden = true
+        mainColorLabel.isHidden = true
+        
+        color1NameLabel.isHidden = true
+        color2NameLabel.isHidden = true
+        color3NameLabel.isHidden = true
+        color4NameLabel.isHidden = true
+        mainColorNameLabel.isHidden = true
         
         switch PIGSelection.shared.selectedMode {
             
@@ -135,12 +152,23 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.color2Label.isHidden = true
             self.color3Label.isHidden = true
             self.color4Label.isHidden = true
+            color1NameLabel.isHidden = true
+            color2NameLabel.isHidden = true
+            color3NameLabel.isHidden = true
+            color4NameLabel.isHidden = true
+            mainColorNameLabel.isHidden = true
         } else {
             self.showingInfo = true
             self.mainColorLabel.isHidden = false
             self.color1Label.isHidden = false
             self.color2Label.isHidden = false
             self.color3Label.isHidden = false
+            self.color4Label.isHidden = false
+            color1NameLabel.isHidden = false
+            color2NameLabel.isHidden = false
+            color3NameLabel.isHidden = false
+            color4NameLabel.isHidden = false
+            mainColorNameLabel.isHidden = false
         }
     }
     
@@ -205,6 +233,11 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color3 = PIGColorManager.getColor3(color: colorVal, mode: PIGSelection.shared.selectedMode)
         let color4 = PIGColorManager.getColor4(color: colorVal, mode: PIGSelection.shared.selectedMode)
         
+        color1NameLabel.text = colorNamer.name(for: color1)
+        color2NameLabel.text = colorNamer.name(for: color2)
+        color3NameLabel.text = colorNamer.name(for: color3)
+        color4NameLabel.text = colorNamer.name(for: color4)
+        mainColorNameLabel.text = colorNamer.name(for: colorVal)
         
         let color1Vals = PIGColorManager.getRGBA(color: color1)
         let color2Vals = PIGColorManager.getRGBA(color: color2)
@@ -212,11 +245,11 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
         let color4Vals = PIGColorManager.getRGBA(color: color4)
         
         DispatchQueue.main.async {
-            self.mainColorLabel.text = "r: \(avgRed), g: \(avgGreen), b: \(avgBlue), a: \(avgAlpha)"
-            self.color1Label.text = "r: \(color1Vals.red), g: \(color1Vals.green), b: \(color1Vals.blue), a: \(color1Vals.alpha)"
-            self.color2Label.text = "r: \(color2Vals.red), g: \(color2Vals.green), b: \(color2Vals.blue), a: \(color2Vals.alpha)"
-            self.color3Label.text = "r: \(color3Vals.red), g: \(color3Vals.green), b: \(color3Vals.blue), a: \(color3Vals.alpha)"
-            self.color4Label.text = "r: \(color4Vals.red), g: \(color4Vals.green), b: \(color4Vals.blue), a: \(color4Vals.alpha)"
+            self.mainColorLabel.text = "r: \(255*avgRed), g: \(255*avgGreen), b: \(255*avgBlue), a: \(avgAlpha)"
+            self.color1Label.text = "r: \(255*color1Vals.red), g: \(255*color1Vals.green), b: \(255*color1Vals.blue), a: \(color1Vals.alpha)"
+            self.color2Label.text = "r: \(255*color2Vals.red), g: \(255*color2Vals.green), b: \(255*color2Vals.blue), a: \(color2Vals.alpha)"
+            self.color3Label.text = "r: \(255*color3Vals.red), g: \(255*color3Vals.green), b: \(255*color3Vals.blue), a: \(color3Vals.alpha)"
+            self.color4Label.text = "r: \(255*color4Vals.red), g: \(255*color4Vals.green), b: \(255*color4Vals.blue), a: \(color4Vals.alpha)"
             self.colorView.backgroundColor = colorVal
             self.color1View.backgroundColor = color1
             self.color2View.backgroundColor = color2
