@@ -11,6 +11,10 @@ import AVFoundation
 import SWRevealViewController
 
 class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var showInfo: UIButton!
+    @IBOutlet weak var menuButtonYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var camFrame: UIView!
+    var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     
     @IBOutlet weak var colorView: UIView!
     let captureSession = AVCaptureSession()
@@ -23,11 +27,12 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var color3View: UIView!
     @IBOutlet weak var color4View: UIView!
     @IBOutlet weak var menuButton: UIButton!
+    var showingInfo = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         var labelVal = ""
-
+        
         switch PIGSelection.shared.selectedMode {
             
         case .analagous:
@@ -43,6 +48,8 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
             
         }
         
+        showInfo.addTarget(self, action: #selector(toggleInfo), for: .touchUpInside)
+        
         modeLabel.text = labelVal
         
         if self.revealViewController() != nil {
@@ -54,8 +61,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
             granted in
             if granted {
                 
-                let captureSession = AVCaptureSession()
-                captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+                self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
                 
                 let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
                 
@@ -63,7 +69,7 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
                 {
                     let input = try AVCaptureDeviceInput(device: backCamera)
                     
-                    captureSession.addInput(input)
+                    self.captureSession.addInput(input)
                 }
                 catch
                 {
@@ -72,17 +78,23 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
                 
                 // although we don't use this, it's required to get captureOutput invoked
-                let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                self.view.layer.addSublayer(previewLayer!)
+//                let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+//                self.view.layer.addSublayer(previewLayer!)
                 
                 let videoOutput = AVCaptureVideoDataOutput()
                 
                 videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "buffer_queue"))
-                if captureSession.canAddOutput(videoOutput) {
-                    captureSession.addOutput(videoOutput)
+                if self.captureSession.canAddOutput(videoOutput) {
+                    self.captureSession.addOutput(videoOutput)
                 }
                 
-                captureSession.startRunning()
+                self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
+                self.videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+                self.videoPreviewLayer?.frame = self.camFrame.frame
+                self.view.layer.addSublayer(self.videoPreviewLayer!)
+                self.videoPreviewLayer?.isHidden = true
+                
+                self.captureSession.startRunning()
             } else {
             }
         })
@@ -94,7 +106,15 @@ class PIGMainViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var prevVals = Array<(red: Float?, green: Float?, blue: Float?, alpha: Float?)>()
     
-    
+    func toggleInfo() {
+        if self.showingInfo {
+             self.videoPreviewLayer?.isHidden = true
+             self.showingInfo = false
+        } else {
+            self.videoPreviewLayer?.isHidden = false
+            self.showingInfo = true
+        }
+    }
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
